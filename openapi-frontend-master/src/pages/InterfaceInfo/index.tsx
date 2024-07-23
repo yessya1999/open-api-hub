@@ -2,10 +2,10 @@ import { PageContainer } from '@ant-design/pro-components';
 import React, { useEffect, useState } from 'react';
 import {Button, Card, Descriptions, Form, message, Input, Spin, Divider} from 'antd';
 import {
-  getInterfaceInfoByIdUsingGet,
-  // invokeInterfaceInfoUsingPost,
+  getInterfaceInfoByIdUsingGet, invokeInterfaceUsingPost,
 } from '@/services/openapi-backend/interfaceInfoController';
 import { useParams } from '@@/exports';
+import moment from 'moment'
 
 /**
  * 主页
@@ -46,16 +46,16 @@ const Index: React.FC = () => {
       return;
     }
     setInvokeLoading(true);
-    // try {
-    //   const res = await invokeInterfaceInfoUsingPost({
-    //     id: params.id,
-    //     ...values,
-    //   });
-    //   setInvokeRes(res.data);
-    //   message.success('请求成功');
-    // } catch (error: any) {
-    //   message.error('操作失败，' + error.message);
-    // }
+    try {
+      const res = await invokeInterfaceUsingPost({
+        id: params.id,
+        ...values,
+      });
+      setInvokeRes(res.data);
+      message.success('请求成功');
+    } catch (error: any) {
+      message.error('操作失败，' + error.message);
+    }
     setInvokeLoading(false);
   };
 
@@ -66,13 +66,14 @@ const Index: React.FC = () => {
           <Descriptions title={data.name} column={1}>
             <Descriptions.Item label="接口状态">{data.status ? '开启' : '关闭'}</Descriptions.Item>
             <Descriptions.Item label="描述">{data.description}</Descriptions.Item>
-            <Descriptions.Item label="请求地址">{data.url}</Descriptions.Item>
+            <Descriptions.Item label="请求域名">{data.ip}</Descriptions.Item>
+            <Descriptions.Item label="请求路径">{data.path}</Descriptions.Item>
             <Descriptions.Item label="请求方法">{data.method}</Descriptions.Item>
             <Descriptions.Item label="请求参数">{data.requestParams}</Descriptions.Item>
             <Descriptions.Item label="请求头">{data.requestHeader}</Descriptions.Item>
             <Descriptions.Item label="响应头">{data.responseHeader}</Descriptions.Item>
-            <Descriptions.Item label="创建时间">{data.createTime}</Descriptions.Item>
-            <Descriptions.Item label="更新时间">{data.updateTime}</Descriptions.Item>
+            <Descriptions.Item label="创建时间">{moment(data.createTime).format('YYYY-MM-DD HH:mm:ss')}</Descriptions.Item>
+            <Descriptions.Item label="更新时间">{moment(data.updateTime).format('YYYY-MM-DD HH:mm:ss')}</Descriptions.Item>
           </Descriptions>
         ) : (
           <>接口不存在</>
@@ -81,7 +82,7 @@ const Index: React.FC = () => {
       <Divider />
       <Card title="在线测试">
         <Form name="invoke" layout="vertical" onFinish={onFinish}>
-          <Form.Item label="请求参数" name="userRequestParams">
+          <Form.Item label="请求参数" name="requestParams">
             <Input.TextArea />
           </Form.Item>
           <Form.Item wrapperCol={{ span: 16 }}>

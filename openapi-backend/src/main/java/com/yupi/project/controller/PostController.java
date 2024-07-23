@@ -4,18 +4,16 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yupi.project.annotation.AuthCheck;
 import com.yupi.project.common.BaseResponse;
-import com.yupi.project.common.DeleteRequest;
+import com.yupi.project.common.IdRequest;
 import com.yupi.project.common.ErrorCode;
 import com.yupi.project.common.ResultUtils;
 import com.yupi.project.constant.CommonConstant;
 import com.yupi.project.exception.BusinessException;
 import com.yupi.project.model.dto.post.PostAddRequest;
-import com.yupi.project.model.dto.post.PostDoThumbRequest;
 import com.yupi.project.model.dto.post.PostQueryRequest;
 import com.yupi.project.model.dto.post.PostUpdateRequest;
 import com.yupi.project.model.entity.Post;
 import com.yupi.project.model.entity.User;
-import com.yupi.project.model.vo.PostVO;
 import com.yupi.project.service.PostService;
 import com.yupi.project.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -25,11 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.*;
-import java.util.stream.Collectors;
 
 /**
  * 帖子接口
@@ -78,17 +72,17 @@ public class PostController {
     /**
      * 删除
      *
-     * @param deleteRequest
+     * @param idRequest
      * @param request
      * @return
      */
     @PostMapping("/delete")
-    public BaseResponse<Boolean> deletePost(@RequestBody DeleteRequest deleteRequest, HttpServletRequest request) {
-        if (deleteRequest == null || deleteRequest.getId() <= 0) {
+    public BaseResponse<Boolean> deletePost(@RequestBody IdRequest idRequest, HttpServletRequest request) {
+        if (idRequest == null || idRequest.getId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         User user = userService.getLoginUser(request);
-        long id = deleteRequest.getId();
+        long id = idRequest.getId();
         // 判断是否存在
         Post oldPost = postService.getById(id);
         if (oldPost == null) {

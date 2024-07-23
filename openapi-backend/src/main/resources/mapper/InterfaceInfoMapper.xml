@@ -10,6 +10,7 @@
             <result property="description" column="description" jdbcType="VARCHAR"/>
             <result property="ip" column="ip" jdbcType="VARCHAR"/>
             <result property="path" column="path" jdbcType="VARCHAR"/>
+            <result property="requestParams" column="requestParams" jdbcType="VARCHAR"/>
             <result property="requestHeader" column="requestHeader" jdbcType="VARCHAR"/>
             <result property="responseHeader" column="responseHeader" jdbcType="VARCHAR"/>
             <result property="method" column="method" jdbcType="VARCHAR"/>
@@ -22,7 +23,7 @@
 
     <sql id="Base_Column_List">
         id,name,description,
-        ip,path,requestHeader,
+        ip,path,requestHeader,requestParams,
         responseHeader,method,status,
         userId,createTime,updateTime,
         isDelete

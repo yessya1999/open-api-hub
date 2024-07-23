@@ -40,6 +40,15 @@ public class InterfaceInfo implements Serializable {
     private String path;
 
     /**
+     * 请求接口的请求参数
+     *
+     * 举例：[
+     *        {"name": "username", "type": "string"}
+     * ]
+     */
+    private String requestParams;
+
+    /**
      * 请求接口的请求头
      */
     private String requestHeader;

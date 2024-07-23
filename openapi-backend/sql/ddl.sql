@@ -12,6 +12,7 @@ create table if not exists interface_info
     description    varchar(256)                       null comment '接口描述',
     ip             varchar(256)                       not null comment '请求接口所在的ip地址',
     path           varchar(256)                       not null comment '请求接口方法所在的请求路径',
+    requestParams  text comment '请求接口的请求参数',
     requestHeader  text comment '请求接口的请求头',
     responseHeader text comment '请求接口的响应头',
     method         varchar(256)                       not null comment '请求方法类型',

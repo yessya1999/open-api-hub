@@ -35,6 +35,12 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseobject = {
+    code?: number;
+    data?: Record<string, any>;
+    message?: string;
+  };
+
   type BaseResponsePageInterfaceInfo = {
     code?: number;
     data?: PageInterfaceInfo;
@@ -71,22 +77,22 @@ declare namespace API {
     message?: string;
   };
 
-  type DeleteRequest = {
-    id?: number;
-  };
-
-  type getInterfaceInfoByIdUsingGetParams = {
+  type getInterfaceInfoByIdUsingGETParams = {
     /** id */
     id?: number;
   };
 
-  type getPostByIdUsingGetParams = {
+  type getPostByIdUsingGETParams = {
     /** id */
     id?: number;
   };
 
-  type getUserByIdUsingGetParams = {
+  type getUserByIdUsingGETParams = {
     /** id */
+    id?: number;
+  };
+
+  type IdRequest = {
     id?: number;
   };
 
@@ -100,6 +106,7 @@ declare namespace API {
     name?: string;
     path?: string;
     requestHeader?: string;
+    requestParams?: string;
     responseHeader?: string;
     status?: number;
     updateTime?: string;
@@ -113,7 +120,13 @@ declare namespace API {
     name?: string;
     path?: string;
     requestHeader?: string;
+    requestParams?: string;
     responseHeader?: string;
+  };
+
+  type InterfaceInfoInvokeRequest = {
+    id?: number;
+    requestParams?: string;
   };
 
   type InterfaceInfoUpdateRequest = {
@@ -124,11 +137,12 @@ declare namespace API {
     name?: string;
     path?: string;
     requestHeader?: string;
+    requestParams?: string;
     responseHeader?: string;
     status?: number;
   };
 
-  type listInterfaceInfoByPageUsingGetParams = {
+  type listInterfaceInfoByPageUsingGETParams = {
     current?: number;
     description?: string;
     id?: number;
@@ -145,7 +159,7 @@ declare namespace API {
     userId?: number;
   };
 
-  type listInterfaceInfoUsingGetParams = {
+  type listInterfaceInfoUsingGETParams = {
     current?: number;
     description?: string;
     id?: number;
@@ -162,7 +176,7 @@ declare namespace API {
     userId?: number;
   };
 
-  type listPostByPageUsingGetParams = {
+  type listPostByPageUsingGETParams = {
     age?: number;
     contact?: string;
     content?: string;
@@ -179,7 +193,7 @@ declare namespace API {
     userId?: number;
   };
 
-  type listPostUsingGetParams = {
+  type listPostUsingGETParams = {
     age?: number;
     contact?: string;
     content?: string;
@@ -196,7 +210,7 @@ declare namespace API {
     userId?: number;
   };
 
-  type listUserByPageUsingGetParams = {
+  type listUserByPageUsingGETParams = {
     createTime?: string;
     current?: number;
     gender?: number;
@@ -211,7 +225,7 @@ declare namespace API {
     userRole?: string;
   };
 
-  type listUserUsingGetParams = {
+  type listUserUsingGETParams = {
     createTime?: string;
     current?: number;
     gender?: number;
@@ -397,10 +411,12 @@ declare namespace API {
   };
 
   type User = {
+    accessKey?: string;
     createTime?: string;
     gender?: number;
     id?: number;
     isDelete?: number;
+    secreteKey?: string;
     updateTime?: string;
     userAccount?: string;
     userAvatar?: string;
