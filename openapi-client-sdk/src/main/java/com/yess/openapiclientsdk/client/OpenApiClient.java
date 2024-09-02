@@ -20,13 +20,15 @@ public class OpenApiClient {
 
     private final String secreteKey;
 
+    private final String GATEWAY_ADDRESS = "http://localhost:8010";
+
     public OpenApiClient(String accessKey, String secreteKey) {
         this.accessKey = accessKey;
         this.secreteKey = secreteKey;
     }
 
     public String getNameByGet(String name){
-        String url = "http://localhost:8123/api/name/";
+        String url = GATEWAY_ADDRESS + "/api/name/";
         HashMap<String, Object> paramMap = new HashMap<>();
         paramMap.put("name", name);
         String result2= HttpUtil.get(url, paramMap);
@@ -34,7 +36,7 @@ public class OpenApiClient {
     }
 
     public String getNameByPost(String name){
-        String url = "http://localhost:8123/api/name/?userName=yess";
+        String url = GATEWAY_ADDRESS + "/api/name/post";
         HashMap<String, Object> paramMap = new HashMap<>();
         paramMap.put("name", name);
         String result3= HttpUtil.post(url, paramMap);
@@ -43,7 +45,7 @@ public class OpenApiClient {
 
     public String getUserNameByPost(User user){
         String json = JSONUtil.toJsonStr(user);
-        String url = "http://localhost:8123/api/name/user";
+        String url = GATEWAY_ADDRESS + "/api/name/user";
 
         String result2 = HttpRequest.post(url)
                 .addHeaders(getHeaderMap(json))

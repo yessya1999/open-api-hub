@@ -10,6 +10,7 @@ import com.yupi.project.common.IdRequest;
 import com.yupi.project.common.ErrorCode;
 import com.yupi.project.common.ResultUtils;
 import com.yupi.project.constant.CommonConstant;
+import com.yupi.project.constant.UserConstant;
 import com.yupi.project.exception.BusinessException;
 import com.yupi.project.model.dto.interfaceInfo.InterfaceInfoAddRequest;
 import com.yupi.project.model.dto.interfaceInfo.InterfaceInfoInvokeRequest;
@@ -142,7 +143,7 @@ public class InterfaceInfoController {
      * @param request
      * @return
      */
-    @AuthCheck(mustRole = "admin")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     @PostMapping("/online")
     public BaseResponse<Boolean> onlineInterface(@RequestBody IdRequest idRequest,
                                                      HttpServletRequest request) {
@@ -179,7 +180,7 @@ public class InterfaceInfoController {
      * @param request
      * @return
      */
-    @AuthCheck(mustRole = "admin")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     @PostMapping("/offline")
     public BaseResponse<Boolean> offlineInterface(@RequestBody IdRequest idRequest,
                                                  HttpServletRequest request) {
@@ -202,7 +203,7 @@ public class InterfaceInfoController {
     }
 
     /**
-     * 测试调用接口
+     * 在线调用接口
      *
      * @param interfaceInfoInvokeRequest
      * @param request
@@ -258,7 +259,7 @@ public class InterfaceInfoController {
      * @param interfaceInfoQueryRequest
      * @return
      */
-    @AuthCheck(mustRole = "admin")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     @GetMapping("/list")
     public BaseResponse<List<InterfaceInfo>> listInterfaceInfo(InterfaceInfoQueryRequest interfaceInfoQueryRequest) {
         InterfaceInfo interfaceInfoQuery = new InterfaceInfo();

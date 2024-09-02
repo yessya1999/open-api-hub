@@ -4,6 +4,21 @@ create database if not exists openapi;
 -- 切换库
 use openapi;
 
+-- 用户接口表
+create table if not exists user_interface_info
+(
+    id             bigint auto_increment comment 'id' primary key,
+    userId         bigint                             not null comment '用户id',
+    interfaceInfoId         bigint                             not null comment '接口id',
+    usedNum         int not null comment '已调用次数',
+    leftNum         int not null comment '剩余调用次数',
+    status         tinyint  default 0                 not null comment '0：正常，1：禁用',
+
+    createTime     datetime default CURRENT_TIMESTAMP not null comment '创建时间',
+    updateTime     datetime default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '更新时间',
+    isDelete       tinyint  default 0                 not null comment '是否删除'
+) comment '用户调用接口信息';
+
 -- 接口表
 create table if not exists interface_info
 (

@@ -8,6 +8,7 @@ import com.yupi.project.common.IdRequest;
 import com.yupi.project.common.ErrorCode;
 import com.yupi.project.common.ResultUtils;
 import com.yupi.project.constant.CommonConstant;
+import com.yupi.project.constant.UserConstant;
 import com.yupi.project.exception.BusinessException;
 import com.yupi.project.model.dto.post.PostAddRequest;
 import com.yupi.project.model.dto.post.PostQueryRequest;
@@ -149,7 +150,7 @@ public class PostController {
      * @param postQueryRequest
      * @return
      */
-    @AuthCheck(mustRole = "admin")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     @GetMapping("/list")
     public BaseResponse<List<Post>> listPost(PostQueryRequest postQueryRequest) {
         Post postQuery = new Post();

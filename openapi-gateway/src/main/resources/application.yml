@@ -1,0 +1,15 @@
+server:
+  port: 8010
+logging:
+  level:
+    org.springframework.cloud.gateway: trace
+spring:
+  cloud:
+    gateway:
+      default-filters:
+        - AddResponseHeader=source, gateway
+      routes:
+        - id: local-api
+          uri: http://localhost:8123
+          predicates:
+            - Path=/api/**
