@@ -2,7 +2,3 @@ server:
   port: 8123
   servlet:
     context-path: /api
-openapi:
-  client:
-    access-key: yess
-    secrete-key: 1234abcd

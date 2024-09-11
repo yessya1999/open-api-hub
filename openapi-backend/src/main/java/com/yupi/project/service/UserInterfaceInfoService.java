@@ -1,8 +1,7 @@
 package com.yupi.project.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yupi.project.model.entity.InterfaceInfo;
-import com.yupi.project.model.entity.UserInterfaceInfo;
+import com.yupi.openapicommon.model.entity.UserInterfaceInfo;
 
 /**
 * @author yess
@@ -18,5 +17,12 @@ public interface UserInterfaceInfoService extends IService<UserInterfaceInfo> {
      */
     void validUserInterfaceInfo(UserInterfaceInfo userInterfaceInfo, boolean add);
 
+    /**
+     * 统计接口调用次数
+     *
+     * @param interfaceInfoId
+     * @param userId
+     * @return
+     */
     boolean invokeCount(Long interfaceInfoId, Long userId);
 }

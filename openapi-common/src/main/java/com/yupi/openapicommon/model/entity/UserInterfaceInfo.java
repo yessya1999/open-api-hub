@@ -1,4 +1,4 @@
-package com.yupi.project.model.entity;
+package com.yupi.openapicommon.model.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
@@ -7,13 +7,12 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 用户
- *
- * @TableName user
+ * 用户调用接口信息
+ * @TableName user_interface_info
  */
-@TableName(value = "user")
+@TableName(value ="user_interface_info")
 @Data
-public class User implements Serializable {
+public class UserInterfaceInfo implements Serializable {
     /**
      * id
      */
@@ -21,44 +20,29 @@ public class User implements Serializable {
     private Long id;
 
     /**
-     * 用户昵称
+     * 用户id
      */
-    private String userName;
+    private Long userId;
 
     /**
-     * 账号
+     * 接口id
      */
-    private String userAccount;
+    private Long interfaceInfoId;
 
     /**
-     * 用户头像
+     * 已调用次数
      */
-    private String userAvatar;
+    private Integer usedNum;
 
     /**
-     * 性别
+     * 剩余调用次数
      */
-    private Integer gender;
+    private Integer leftNum;
 
     /**
-     * 用户角色: user, admin
+     * 0：正常，1：禁用
      */
-    private String userRole;
-
-    /**
-     * 密码
-     */
-    private String userPassword;
-
-    /**
-     * accessKey
-     */
-    private String accessKey;
-
-    /**
-     * secreteKey
-     */
-    private String secreteKey;
+    private Integer status;
 
     /**
      * 创建时间
